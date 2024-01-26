@@ -43,21 +43,51 @@ def suma(n1,n2):
     return "<h1>La suma de  {}  + {}  es: {}</h1>".format(n1,n2, n1+n2)
 
 @app.route("/multiplica", methods=["GET", "POST"])
-def mult():
-        if request.method=="POST":
-            num1= request.form.get("n1")
-            num2= request.form.get("n2")
-            return "<h1>El resultado es: {}</h1>".format(str(int(num1)*int(num2)))
-        else:
-            return  """ 
-                        <form action="/multiplica" method="POST">
-                            <label for="n1">N1:</label>
-                            <input type="text" name="n1">
-                            <label for="n2">N2:</label>
-                            <input type="text" name="n2">
-                            <input type="submit">
-                        </form>
-                    """
+def operasBas():
+    
+    if request.method=="POST":
+        num1=request.form.get("num1")
+        num2=request.form.get("num2")
+        op=request.form.get("op")
+
+        if op=="sum":
+            return "<h2> La suma es: {}</h2>".format(str(int(num1)+int(num2)))
+        if op=="rest":
+            return "<h2> La resta es: {}</h2>".format(str(int(num1)-int(num2)))
+        if op=="mult":
+            return "<h2> La multiplicacio es: {}</h2>".format(str(int(num1)*int(num2)))
+
+        if op=="div":
+            return "<h2> La division es: {}</h2>".format(str(int(num1)/int(num2)))    
+
+
+        return "<h2>No ingresaste los numeros</h2>".format(str(int(num1)+int(num2)))
+
+    else:
+       return '''
+        <form action="/operasBas" method="POST">
+        <label> N1: </label>
+        <input type="text" name="num1"/></br></br>
+        <label> N2: </label>
+        <input type="text" name="num2"/></br></br>
+        
+        
+        <input type="radio" id="suma" name="op" value="sum">
+        <label for="suma">Suma</label>
+
+        <input type="radio" id="resta" name="op" value="rest">
+        <label for="resta">Resta</label><br>
+        
+        <input type="radio" id="multi" name="op" value="mul">
+        <label for="multi">Multiplicacion</label><br>
+       
+        <input type="radio" id="div" name="op" value="div" >
+        <label for="div">Division</label><br>
+        
+        <input type="submit" value="calcular"/><br></br></br>
+
+        </form>
+        '''
         
 @app.route("/formulario1")
 def calculo():
