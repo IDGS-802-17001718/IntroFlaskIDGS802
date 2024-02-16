@@ -4,10 +4,12 @@
 {%import "_macros.html" as macros%}
     <h1>Alumnos</h1>
 
-    <form action="" method="post">
+    <form action="" method="post" novalidate>
         {{macros.input_form(form.nombre, class='form-control')}}
         {{macros.input_form(form.email, class='form-control')}}
+        {{macros.input_form(form.edad, class='form-control')}}
         {{macros.input_form(form.apaterno, class='form-control')}}
+        {{macros.input_form(form.amaterno, class='form-control')}}
         <input type="submit" name="btn1">
     </form>
 
